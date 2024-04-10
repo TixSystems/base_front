@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Observando Mudanças na Lista</title>
+    
+    <link rel="stylesheet" href="../styles.css">
+    <script src="./../modules.js"></script>
+    <style>
+
+        body{
+            background-color: rgb(37, 35, 35);
+            color: white;
+            font-family: sans-serif;
+        }
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            max-width: 100%;
+            justify-content: center;
+            align-items: center;
+            gap: .5rem
+        }
+
+
+        li {
+            list-style-type: none;
+            aspect-ratio: 1 / 1;
+            max-height: 4.2rem;
+            list-style: none;
+            background-color: rgb(79, 224, 135);
+            color: white;
+            border: 1px solid #ccc;
+
+            flex: 1;
+            min-width: 18%;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            border-radius: .5rem;
+        }
+
+        /* Adicionando a animação apenas aos elementos com a classe 'animated' */
+        .animated {
+            animation: pulse 2s cubic-bezier(0.68, -0.6, 0.32, 1.6) 0s 1 normal forwards;
+        }
+
+        @keyframes pulse {
+            0% {
+                animation-timing-function: ease-out;
+                transform: scale(1);
+                transform-origin: center center;
+            }
+
+            10% {
+                animation-timing-function: ease-in;
+                transform: scale(0.91);
+            }
+
+            17% {
+                animation-timing-function: ease-out;
+                transform: scale(0.98);
+            }
+
+            33% {
+                animation-timing-function: ease-in;
+                transform: scale(0.87);
+            }
+
+            45% {
+                animation-timing-function: ease-out;
+                transform: scale(1);
+            }
+        }
+
+        .red {
+            background-color: rgb(218, 50, 233);
+        }
+
+        .main{
+            display: flex;
+            flex-direction: row;
+            gap: 1rem
+        }
+
+        #numeros-container{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 1rem;
+            width: 100%;
+        }
+
+        .elemento{
+            min-width: 17%;
+            background-color: rgb(5, 72, 196);
+            color: white;
+            flex: 1;
+            aspect-ratio: 1/1;
+
+             display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            border-radius: .5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-[url('../fundo02.jpeg')]  bg-center bg-cover w-full min-h-screen h-screen ">
+        <div class="w-full h-full absolute bg-zinc-900/70 backdrop-blur-sm"></div>
+
+        <div class="flex flex-row w-full h-full p-4">
+
+            <!-- LEFT -->
+            <div class="w-3/4 grow h-full flex flex-col z-10 p-4">
+                <!-- MENU -->
+                <div class="p-4">
+                    MENU
+                </div>
+                <!-- PREMIOS -->
+                <div class=" flex flex-row">
+                    <div class="bg-zinc-100/10 backdrop-blur-md rounded-lg border border-white border-2 p-4 shadow shadow-yellow-400 shadow-3xl outline outline-offset-[-.1rem] outline-[.5rem] outline-yellow-300 outline-dotted animate-pulse">
+                        PREMIO 01
+                    </div>
+                </div>
+                <div class="flex flex-row py-4">
+                    <div class=" flex flex-col w-60">
+                        <div class="bg-zinc-100/10 backdrop-blur-md rounded-lg border border-white border-2 p-4">
+                            SORTEIO
+                        </div>
+                    </div>
+                    <div id="app" class="flex flex-row"></div>
+                </div>
+                
+                
+            </div>
+            
+            <!-- Right -->
+            <div class="flex flex-col w-96 h-full bg-zinc-100/10 backdrop-blur-md rounded-lg border border-white border-2 p-2">
+                <!-- RANKING -->
+                <div id="ranking">
+                </div>
+                
+                <!-- CARTELAS -->
+                <div class=" flex flex-row flex-wrap">
+                    <!-- CARTELA -->
+                    <div class="border">
+
+                        joanta
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        
+
+    </div>
+    
+    <div class="main">
+        <div style="width: 50%;">
+            <h1>Lista de Números</h1>
+            <ul id="lista-numeros" class="lista">
+
+            </ul>
+        </div>
+        
+        <div style="width: 50%;">
+            <h1>Seus Números</h1>
+            <div id="numeros-container">
+
+            </div>
+        </div>
+    </div>
+    
+    
+    <script>
+        const numerosArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+
+        const numerosContainer = document.getElementById('numeros-container');
+
+        // Itera sobre o array de números e cria uma div para cada número
+        numerosArray.forEach(numero => {
+            const divNumero = document.createElement('div');
+            divNumero.classList.add('elemento')
+            divNumero.textContent = numero;
+            numerosContainer.appendChild(divNumero);
+        });
+    </script>
+
+    <script src="./index.js"></script>
+</body>
+
+</html>

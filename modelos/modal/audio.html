@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reproduzir MP3 com JavaScript</title>
+</head>
+
+<body>
+
+    <audio id="myAudio">
+        <source src="C:\Users\User\Development\Bun\testinit\modelos\modal\premio3.mp3" type="audio/mpeg">
+        Seu navegador não suporta a tag de áudio HTML5.
+    </audio>
+    <audio id="audio2">
+        <source src="C:\Users\User\Development\Bun\testinit\modelos\modal\falta5min.mp3" type="audio/mpeg">
+        Seu navegador não suporta a tag de áudio HTML5.
+    </audio>
+
+    <button id="playButton">Iniciar Reprodução</button>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var audio = document.getElementById("myAudio");
+            var audio2 = document.getElementById("audio2");
+            var playButton = document.getElementById("playButton");
+
+            playButton.addEventListener("click", function () {
+                audio.play();
+                // Remova o botão após iniciar a reprodução, se necessário
+                playButton.style.display = "none";
+
+                // Iniciar reprodução do segundo áudio após 5 segundos
+                setTimeout(function () {
+                    audio.pause();
+                    audio2.play();
+                }, 5000); // 5000 milissegundos = 5 segundos
+            });
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+{
+  "name": "maskui",
+  "module": "build.js",
+  "type": "module",
+  "scripts": {
+    "build": "bun run css && bun run out",
+    "css": "bun tailwindcss -i ./pages/main.css -o ./pages/styles.css",
+    "out": "bun run build.js"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "animejs": "npm:animejs",
+    "jquery": "npm:jquery",
+    "md5": "npm:md5",
+    "mustache": "npm:handlebars",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tailwindcss": "npm:tailwindcss"
+  },
+  "version": "1.0.0"
+}
