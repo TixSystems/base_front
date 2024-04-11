@@ -2,7 +2,7 @@ import thtml from './template.html'
 
 export function hello() {
     return `
-    <svg class="flex w-60" viewBox="0 0 224.9704 224.97037" version="1.1" id="svg1" xmlns="http://www.w3.org/2000/svg"
+    <svg class="flex w-1/3 overflow-hidden" viewBox="0 0 224.9704 224.97037" version="1.1" id="svg1" xmlns="http://www.w3.org/2000/svg"
         xmlns:svg="http://www.w3.org/2000/svg">
         <defs id="defs1">
             <filter x="-0.2160293" width="1.4320586" y="-0.2160293" height="1.4320586"
@@ -86,9 +86,9 @@ export function hello() {
                     <text
                         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:52.6919px;line-height:22.0287px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:end;letter-spacing:-0.0509921px;word-spacing:-1.40229px;text-anchor:end;display:inline;opacity:0.607321;fill:#000000;fill-opacity:1;"
                         x="135.17139" y="164.8252" id="text1">
-                        <tspan id="tspan1"
+                        <tspan id="tspan1" class="flex justify-center items-center"
                             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;fill:#000000;"
-                            x="135.12039" y="164.8252">{{number}}</tspan>
+                            x={{x}} y="164.8252">{{number}}</tspan>
                     </text>
                 </g>
                 <circle
@@ -111,5 +111,11 @@ export function hello() {
             </g>
         </g>
     </svg>
+    `
+}
+
+export function ranking() {
+    return `
+    <div></div>
     `
 }

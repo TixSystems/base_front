@@ -7,7 +7,7 @@ app.use(cors());
 const http = require('http');
 const WebSocket = require('ws');
 
-const total_numeros = 30;
+const total_numeros = 90;
 
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
@@ -95,7 +95,7 @@ function adicionarNumero() {
 }
 
 // Inicia a função para adicionar números a cada 2 segundos
-setInterval(adicionarNumero, 2000);
+setInterval(adicionarNumero, 4500);
 
 // Rota para servir a página HTML
 app.get('/', (req, res) => {

@@ -3,6 +3,7 @@ import icss from "../styles.css";
 import thtml from "./template.html"
 import { hello } from "./template.js"
 import { animate } from "./animation.js";
+import ajson from './data.json'
 
 const socket = new WebSocket('ws://localhost:3000');
 let lastLi = null;
@@ -25,7 +26,7 @@ socket.onmessage = function (event) {
     }
 
     // Verifica se algum número sorteado está na sua lista de 1 a 15
-    const selecionados = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+    const selecionados = [1, 2, 30, 4, 5, 6, 7, 8, 45, 10, 11, 12, 13, 14, 15];
     const numerosSorteados = lista.filter(numero => selecionados.includes(numero));
 
     // Muda o fundo dos números sorteados para roxo (purple)
@@ -41,27 +42,28 @@ socket.onmessage = function (event) {
     listaElement.innerHTML = '';
 
     // Mapeia os números recebidos para elementos li
-    last3.forEach(numero => {
+    last3.forEach(function (numero) {
         // Verifica se o número já existe na lista
-        if (!listaElement.querySelector(`li[data-value="${numero}"]`)) {
-            // Cria um novo elemento li para o novo número
-            const li = document.createElement('li');
-            li.textContent = numero;
-            li.setAttribute('data-value', numero); // Define um atributo para identificar o valor do número
-            listaElement.appendChild(li);
+        if (!$(listaElement).find('li[data-value="' + numero + '"]').length) {
+            const tbola = Handlebars.compile(hello());
+            const ebola = tbola(setBall(last3[last3.length - 3]));
+            const ebola2 = tbola(setBall(last3[last3.length - 2]));
+            const ebola3 = tbola(setBall(last3[last3.length - 1])); 
+            
+            $("#app").empty()
+
+            $("#app").append($(ebola))
+            $("#app").append($(ebola2))
+            $("#app").append($(ebola3))
+
+            const li = $(ebola);
+            $(li).attr('data-value', numero);
 
             // Aplica a classe de animação apenas para o novo elemento li
-            if (lastLi) {
-                lastLi.classList.remove('animated');
-            }
-            li.classList.add('animated');
-            lastLi = li;
-
-            setTimeout(() => {
-                li.classList.remove('animated');
-            }, 1000);
+            animate()
         }
     });
+
 };
 
 // Em caso de erro na conexão
@@ -98,27 +100,74 @@ function setBall(number) {
         color = '#143CCE'
     } else if (number < 81) {
         color = '#0C5126'
-    } else {
+    } else if (number < 91) {
         color = '#520854'
+    } else {
+        color = '#c6c6c6'
     }
+
+    var x
+
+    if (number>9) {
+        x = "136.12039"
+    } else {
+        x = '120'
+    }
+
+
 
     return{
         color: color,
-        number: number
+        number: number,
+        x: x
     };
+}
+
+import { clients } from "./dados.js";
+
+function atualizarRanking() {
+    // Chama a função clients() para obter os dados
+    var dados = clients();
+
+    // Verifica se há dados
+    if (dados.length > 0) {
+        // Cria uma tabela HTML
+        var tabelaHTML = `
+        <div class="w-full">
+            <div class="py-2">
+                <div class="flex flex-row gap-2">
+                    <div class="border w-1/5 px-2 py-[.2rem] rounded-md">ID</div>
+                    <div class="border w-2/5 px-2 py-[.2rem] rounded-md">Nome</div>
+                </div>
+            </div>
+            <div class="w-full flex flex-col gap-2">`;
+
+        // Itera sobre os dados e cria as linhas da tabela
+        $.each(dados, function (index, item) {
+            tabelaHTML += `<div class="w-full flex flex-row gap-2"><div class="w-1/5 text-ellipsis truncate bg-white/10 rounded-md p-2"> ${item.hash}</div><div class="w-2/5 text-ellipsis truncate bg-white/10 rounded-md p-2"> ${item.nome} </div></div>`;
+        });
+
+        // Fecha a tabela
+        tabelaHTML += "</div></div>";
+
+        // Insere a tabela dentro do elemento com id "ranking"
+        $("#ranking").html(tabelaHTML);
+    } else {
+        // Se não houver dados, exibe uma mensagem de aviso
+        $("#ranking").html("Nenhum cliente encontrado.");
+    }
 }
 
 $(document).ready(function () {
 
     var tbola = Handlebars.compile(hello())
+
+
+
+    atualizarRanking()
+
     
-    var ebola = tbola(setBall(33))
-    var ebola2 = tbola(setBall(47))
-
-    $("#app").append($(ebola))
-    $("#app").append($(ebola2))
-
-    animate()
+    console.log(JSON.stringify(clients()))
 
     
 })

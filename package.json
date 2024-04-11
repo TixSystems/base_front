@@ -15,9 +15,12 @@
   },
   "dependencies": {
     "animejs": "npm:animejs",
+    "cors": "npm:cors",
+    "express": "npm:express",
     "jquery": "npm:jquery",
     "md5": "npm:md5",
     "mustache": "npm:handlebars",
+    "mysql": "npm:mysql",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "tailwindcss": "npm:tailwindcss"

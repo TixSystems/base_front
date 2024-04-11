@@ -8,6 +8,7 @@ export function animate() {
         easing: 'easeOutSine',
         loop: false
     })
+
     var timeline_circles = anime.timeline({
         targets: '#app svg:last-child #g1',
         easing: 'easeOutSine',
@@ -126,4 +127,58 @@ export function animate() {
             { value: 0, duration: firstdt * 2 },
         ],
     })
+
+    //segundas e terceiras bolas
+
+    var penultimateChild = $('#app svg:last-child').prev();
+
+    // Verifica se o penúltimo filho foi encontrado
+    
+        // Cria a timeline usando o penúltimo filho como alvo
+        var timeline_ball2 = anime.timeline({
+            targets: '#app svg:nth-child(2) #g41',
+            easing: 'easeOutSine',
+            loop: false
+        });
+
+        var timeline_all2 = anime.timeline({
+            targets: '#app svg:nth-child(2)',
+            easing: 'easeOutSine',
+            loop: false
+        });
+
+        timeline_ball2.add({
+            translateY: [
+                { value: 10, duration: firstdt * 2 },
+            ],
+        })
+        timeline_all2.add({
+            scale: [
+                { value: .8, duration: firstdt * 2 },
+            ],
+        })
+    
+        var timeline_ball3 = anime.timeline({
+            targets: '#app svg:nth-child(1) #g41',
+            easing: 'easeOutSine',
+            loop: false
+        });
+
+        var timeline_all3 = anime.timeline({
+            targets: '#app svg:nth-child(1)',
+            easing: 'easeOutSine',
+            loop: false
+        });
+
+        timeline_ball3.add({
+            translateY: [
+                { value: 10, duration: firstdt * 2 },
+            ],
+        })
+        timeline_all3.add({
+            scale: [
+                { value: .6, duration: firstdt * 2 },
+            ],
+        })
+    
 }
