@@ -111,6 +111,20 @@
 
             border-radius: .5rem;
         }
+
+        @keyframes girar {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        /* Aplica a animação a um elemento */
+        #loading {
+            animation: girar 2s ease-in-out infinite; /* A animação dura 2 segundos, segue um ritmo linear e é repetida infinitamente */
+        }
     </style>
 </head>
 
@@ -118,10 +132,10 @@
     <div class="bg-[url('../fundo02.jpeg')]  bg-center bg-cover w-full min-h-screen h-screen ">
         <div class="w-full h-full absolute bg-zinc-900/70 backdrop-blur-sm"></div>
 
-        <div class="flex flex-row w-full h-full p-4">
+        <div class="flex flex-row w-full h-full p-4 gap-4">
 
             <!-- LEFT -->
-            <div class="w-3/4 grow h-full flex flex-col z-10 p-4">
+            <div class="w-3/4 grow h-full flex flex-col z-10 ">
                 <!-- MENU -->
                 <div class="p-4">
                     MENU
@@ -132,67 +146,77 @@
                         PREMIO 01
                     </div>
                 </div>
-                <div class="flex flex-row py-4">
-                    <div class=" flex flex-col w-60">
+                <div class="flex h-full w-full flex-row py-4">
+                    <div class=" flex flex-col w-1/5">
                         <div class="bg-zinc-100/10 backdrop-blur-md rounded-lg border border-white border-2 p-4">
                             SORTEIO
                         </div>
                     </div>
-                    <div id="app" class="flex flex-row-reverse overflow-hidden"></div>
+                    <div id="app" class="grow flex h-full flex-row-reverse overflow-hidden pl-12 justify-center items-center">
+                        <div id="loading" class="flex absolute justify-center items-center top-[45vh]">
+                            <svg width="50px" height="50px" class="absolute" viewBox="0 0 100 100" version="1.1" id="svg1"
+                                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+                                xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:svg="http://www.w3.org/2000/svg">
+                                <sodipodi:namedview id="namedview1" pagecolor="#ffffff" bordercolor="#000000" borderopacity="0.25"
+                                    inkscape:showpageshadow="2" inkscape:pageopacity="0.0" inkscape:pagecheckerboard="0"
+                                    inkscape:deskcolor="#d1d1d1" inkscape:document-units="mm" />
+                                <defs id="defs1" />
+                                <g inkscape:label="Camada 1" inkscape:groupmode="layer" id="layer1" transform="translate(-12.245501,-22.916166)">
+                                    <g id="g2" transform="matrix(1.0161859,0,0,1.0161859,-1.0075012,-1.1802158)">
+                                        <circle style="fill:#1e65ff;stroke-width:3;stroke-linejoin:round" id="path1" cx="62.245502" cy="72.916168"
+                                            r="49.203594" inkscape:export-filename="loading.svg" inkscape:export-xdpi="96"
+                                            inkscape:export-ydpi="96" />
+                                        <path sodipodi:type="star" style="fill:#ffffff;fill-opacity:1;stroke-width:3;stroke-linejoin:round"
+                                            id="path2" inkscape:flatsided="false" sodipodi:sides="5" sodipodi:cx="24.305387" sodipodi:cy="46.239517"
+                                            sodipodi:r1="39.83783" sodipodi:r2="19.918915" sodipodi:arg1="1.0471976" sodipodi:arg2="1.6755161"
+                                            inkscape:rounded="0" inkscape:randomized="0"
+                                            d="M 44.224301,80.740091 22.223294,66.049314 -2.351325,75.844793 4.8217487,50.380892 -12.08828,30.03601 14.34593,28.989231 28.469577,6.6199236 37.633743,31.436879 63.272665,37.956769 42.502221,54.34127 Z"
+                                            inkscape:transform-center-x="-1.0912586" inkscape:transform-center-y="-2.1705622"
+                                            transform="matrix(0.84803767,0,0,0.84803767,40.462646,34.432259)" />
+                                    </g>
+                                </g>
+                            </svg>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="h-[35%] flex items-center justify-center relative">
+                    
+                    <div id="todos_numeros" class="h-full w-full bg-white/10 border border-2 rounded-lg grid grid-rows-3 p-2 gap-2 text-sm font-bold">
+                        <div id="sorteados" class="absolute px-4 py-2 top-[-1.8rem] rounded-lg text-sm bg-blue-600 z-10">Números Sorteados</div>
+                    </div>
                 </div>
                 
                 
             </div>
             
             <!-- Right -->
-            <div class="flex flex-col w-96 h-full bg-zinc-100/10 backdrop-blur-md rounded-lg border border-white border-2 p-2">
+            <div class="flex flex-col gap-2 w-1/4 h-full bg-zinc-100/10 backdrop-blur-md rounded-lg border border-white border-2 p-2">
                 <!-- RANKING -->
                 <div id="ranking" class="overflow-y-scroll overflow-x-hidden max-h-2/5 h-2/5">
                 </div>
                 
-                <!-- CARTELAS -->
-                <div class=" flex flex-row flex-wrap">
-                    <!-- CARTELA -->
+                <div class="flex flex-col">
+                    <span class="font-bold text-lg text-zinc-100">Suas cartelas</span>
+                    <div id="cartelas" class=" flex flex-row flex-wrap">
+                        <!-- CARTELA -->
                     
+                    
+                    </div>
 
                 </div>
+                <!-- CARTELAS -->
+                
+                
             </div>
 
         </div>
         
 
-    </div>
-    
-    <div class="main">
-        <div style="width: 50%;">
-            <h1>Lista de Números</h1>
-            <ul id="lista-numeros" class="lista">
-
-            </ul>
-        </div>
-        
-        <div style="width: 50%;">
-            <h1>Seus Números</h1>
-            <div id="numeros-container">
-
-            </div>
-        </div>
-    </div>
+    </div> 
     
     
-    <script>
-        const numerosArray = [1, 2, 30, 4, 5, 6, 7, 8, 45, 10, 11, 12, 13, 14, 15];
-
-        const numerosContainer = document.getElementById('numeros-container');
-
-        // Itera sobre o array de números e cria uma div para cada número
-        numerosArray.forEach(numero => {
-            const divNumero = document.createElement('div');
-            divNumero.classList.add('elemento')
-            divNumero.textContent = numero;
-            numerosContainer.appendChild(divNumero);
-        });
-    </script>
 
     <script src="./index.js"></script>
 </body>

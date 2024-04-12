@@ -5,7 +5,8 @@
   "scripts": {
     "build": "bun run css && bun run out",
     "css": "bun tailwindcss -i ./pages/main.css -o ./pages/styles.css",
-    "out": "bun run build.js"
+    "out": "bun run build.js",
+    "watch": "concurrently \"npx tailwindcss -i ./pages/main.css -o ./pages/styles.css --watch\" \"bun run ./build.js\""
   },
   "devDependencies": {
     "@types/bun": "latest"
@@ -14,7 +15,11 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
+    "@tabler/core": "npm:@tabler/core",
+    "@tabler/icons": "npm:@tabler/icons",
     "animejs": "npm:animejs",
+    "chokidar": "^3.6.0",
+    "concurrently": "npm:concurrently",
     "cors": "npm:cors",
     "express": "npm:express",
     "jquery": "npm:jquery",

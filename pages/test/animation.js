@@ -1,6 +1,5 @@
 export function animate() {
 
-    console.log('hello')
     let firstdt = 100
 
     var timeline_ball = anime.timeline({
@@ -154,9 +153,13 @@ export function animate() {
         })
         timeline_all2.add({
             scale: [
-                { value: .8, duration: firstdt * 2 },
+                { value: .6, duration: firstdt * 2 },
             ],
-        })
+            translateX: [
+                { value: '-5%', duration: 0},
+                { value: '53%', duration: firstdt * 2 }//3
+            ]
+        }) 
     
         var timeline_ball3 = anime.timeline({
             targets: '#app svg:nth-child(1) #g41',
@@ -177,8 +180,53 @@ export function animate() {
         })
         timeline_all3.add({
             scale: [
-                { value: .6, duration: firstdt * 2 },
+                { value: .5, duration: firstdt * 2 },
             ],
+            translateX: [
+                { value: '53%', duration: 0 },
+                { value: '120%', duration: firstdt * 2 } //4
+            ]
         })
+    
+    var timeline_ball4 = anime.timeline({
+        targets: '#app svg:nth-child(3) #g41',
+        easing: 'easeOutSine',
+        loop: false
+    });
+
+    var timeline_all4 = anime.timeline({
+        targets: '#app svg:nth-child(3)',
+        easing: 'easeOutSine',
+        loop: false
+    });
+
+    timeline_ball4.add({
+        translateY: [
+            { value: 10, duration: firstdt * 2 },
+        ],
+    })
+    timeline_all4.add({
+        scale: [
+            { value: .7, duration: firstdt * 2 },
+        ],
+        translateX: [
+            { value: '-50%', duration: 0 },
+            { value: '-5%', duration: firstdt * 2 } //2
+        ]
+    })
+
+
+    var timeline_allfirst = anime.timeline({
+        targets: '#app svg:nth-child(4)',
+        easing: 'easeOutSine',
+        loop: false
+    });
+
+    timeline_allfirst.add({
+        translateX: [
+            { value: '-50%', duration: firstdt * 2 } // 1
+        ]
+    })
+    
     
 }

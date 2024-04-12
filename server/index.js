@@ -1,3 +1,8 @@
+//config
+const total_numeros = 90;
+const delay = 1000; //1segundos
+//
+
 const express = require('express');
 const app = express();
 const cors = require('cors');
@@ -7,7 +12,7 @@ app.use(cors());
 const http = require('http');
 const WebSocket = require('ws');
 
-const total_numeros = 90;
+
 
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
@@ -61,8 +66,32 @@ function atualizarSorteio(numeros) {
     });
 }
 
+function getCartela(callback) {
+    const query = `SELECT cartelas FROM bd_cartelas`;
+
+    connection.query(query, (err, result) => {
+        if (err) {
+            console.error(err);
+            callback(err, null);
+        } else {
+            const cartelas = result.map(row => row.cartelas);
+            console.log(JSON.stringify(cartelas));
+            callback(null, cartelas);
+        }
+    });
+}
+
 // Lista para armazenar os números
 let lista = [];
+let cartela
+
+getCartela((err, cartelas) => {
+    if (err) {
+        console.log('err')
+    } else {
+        cartela = cartelas
+    }
+});
 
 // Função para adicionar números únicos à lista a cada 2 segundos
 function adicionarNumero() {
@@ -78,7 +107,7 @@ function adicionarNumero() {
 
     if (lista.length === total_numeros) {
         // Quando a lista atingir 30 elementos, finaliza o sorteio
-        console.log('Lista atingiu 30 elementos. Último número:', lista[total_numeros - 1]);
+        console.log('Lista atingiu o total de elementos. Último número:', lista[total_numeros - 1]);
         // Atualizar o último sorteio na tabela sorteios
         
         lista = [];
@@ -89,13 +118,13 @@ function adicionarNumero() {
     // Envia a lista atualizada para todos os clientes WebSocket conectados
     wss.clients.forEach(client => {
         if (client.readyState === WebSocket.OPEN) {
-            client.send(JSON.stringify(lista));
+            client.send(JSON.stringify({lista: lista, cartela: cartela}));
         }
     });
 }
 
 // Inicia a função para adicionar números a cada 2 segundos
-setInterval(adicionarNumero, 4500);
+setInterval(adicionarNumero, delay);
 
 // Rota para servir a página HTML
 app.get('/', (req, res) => {

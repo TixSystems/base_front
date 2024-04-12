@@ -2,7 +2,7 @@ import thtml from './template.html'
 
 export function hello() {
     return `
-    <svg class="flex w-1/3 overflow-hidden" viewBox="0 0 224.9704 224.97037" version="1.1" id="svg1" xmlns="http://www.w3.org/2000/svg"
+    <svg class="flex w-[30%] absolute overflow-hidden" viewBox="0 0 224.9704 224.97037" version="1.1" id="svg1" xmlns="http://www.w3.org/2000/svg"
         xmlns:svg="http://www.w3.org/2000/svg">
         <defs id="defs1">
             <filter x="-0.2160293" width="1.4320586" y="-0.2160293" height="1.4320586"
@@ -117,5 +117,70 @@ export function hello() {
 export function ranking() {
     return `
     <div></div>
+    `
+}
+
+
+export function mytabela() {
+    return `
+    <div class="w-1/2 rounded-lg" style="background-color: rgb(32, 54, 124);">
+    <div class="relative flex flex-col  p-2 overflow-hidden w-full" >
+        
+            <div id="minha_cartela" class="grid grid-cols-5 grid-rows-3 p-[.2rem] gap-[.2rem] text-sm"></div>
+            
+            <div id="quina-01" style="display: none" class="w-full h-full top-0 left-0 grid grid-rows-3 grid-cols-5 p-[.7rem] gap-[.2rem] text-sm absolute">
+                <div class="outline outline-4 outline-yellow-500 rounded-full col-span-5 row-span-1"></div>
+            </div>
+
+            <div id="quina-02" style="display: none" class="w-full h-full top-0 left-0 grid grid-rows-3 grid-cols-5 p-[.7rem] gap-[.2rem] text-sm absolute">
+                <div class="col-span-1 row-span-1"></div>
+                <div class="col-span-1 row-span-1"></div>
+                <div class="outline outline-4 outline-yellow-500 rounded-full col-span-5 row-span-1"></div>
+            </div>
+
+            <div id="quina-03" style="display: none" class="w-full h-full top-0 left-0 grid grid-rows-3 grid-cols-5 p-[.7rem] gap-[.2rem] text-sm absolute">
+                <div class="col-span-1 row-span-1"></div>
+                <div class="col-span-1 row-span-2"></div>
+                <div class="outline outline-4 outline-yellow-500 rounded-full col-span-5 row-span-1"></div>
+            </div>
+
+            <div id="quadra-01" style="display: none" class="w-full h-full top-0 left-0 grid grid-rows-3 grid-cols-5 p-[.7rem] gap-[.2rem] text-sm absolute"> 
+                <div class="outline outline-4 outline-yellow-500 rounded-full col-span-4 row-span-1"></div>
+            </div>
+
+            <div id="quadra-02" style="display: none" class="w-full h-full top-0 left-0 grid grid-rows-3 grid-cols-5 p-[.7rem] gap-[.2rem] text-sm absolute">
+                <div class="col-span-1 row-span-1"></div>
+                <div class="outline outline-4 outline-yellow-500 rounded-full col-span-4 row-span-1"></div>
+            </div>
+
+            <div id="quadra-03" style="display: none" class="w-full h-full top-0 left-0 grid grid-rows-3 grid-cols-5 p-[.7rem] gap-[.2rem] text-sm absolute">
+                <div class="col-span-5 row-span-1"></div>
+                <div class="outline outline-4 outline-yellow-500 rounded-full col-span-4 row-span-1"></div>
+            </div>
+            <div id="quadra-04" style="display: none" class="w-full h-full top-0 left-0 grid grid-rows-3 grid-cols-5 p-[.7rem] gap-[.2rem] text-sm absolute">
+                <div class="col-span-5 row-span-1"></div>
+                <div class="col-span-1 row-span-1"></div>
+                <div class="outline outline-4 outline-yellow-500 rounded-full col-span-4 row-span-1"></div>
+            </div>
+
+            <div id="quadra-05" style="display: none" class="w-full h-full top-0 left-0 grid grid-rows-3 grid-cols-5 p-[.7rem] gap-[.2rem] text-sm absolute">
+                <div class="col-span-5 row-span-2"></div>
+                <div class="outline outline-4 outline-yellow-500 rounded-full col-span-4 row-span-1"></div>
+            </div>
+
+            <div id="quadra-06" style="display: none" class="w-full h-full top-0 left-0 grid grid-rows-3 grid-cols-5 p-[.7rem] gap-[.2rem] text-sm absolute">
+                <div class="col-span-5 row-span-2"></div>
+                <div class="col-span-1 row-span-1"></div>
+                <div class="outline outline-4 outline-yellow-500 rounded-full col-span-4 row-span-1"></div>
+            </div>
+
+            
+        
+        
+
+        
+    </div>
+        <div class="static p-2">{{nome}}</div>
+    </div>
     `
 }
