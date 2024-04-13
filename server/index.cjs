@@ -3,16 +3,16 @@ const total_numeros = 90;
 const delay = 1000; //1segundos
 //
 
-import express from 'express';
-import cors from 'cors';
-import http from 'http';
-import WebSocket from 'ws';
-// const express = require('express');
+// import express from 'express';
+// import cors from 'cors';
+// import http from 'http';
+// import WebSocket from 'ws';
+const express = require('express');
 const app = express();
 const dir = express();
-// const cors = require('cors');
-// const http = require('http');
-// const WebSocket = require('ws');
+const cors = require('cors');
+const http = require('http');
+const WebSocket = require('ws');
 
 app.use(cors());
 
